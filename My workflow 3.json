@@ -1,0 +1,160 @@
+{
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -928,
+        -1024
+      ],
+      "id": "5cbd24fd-9b03-46cd-bcf3-de7d40c21a67",
+      "name": "When chat message received",
+      "webhookId": "7dc096ab-42a7-42fa-b5f5-0a462fd784c6"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -624,
+        -1056
+      ],
+      "id": "6c1534f7-7160-4617-8349-915e0ecef113",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -784,
+        -880
+      ],
+      "id": "fdfba87b-90aa-440b-b28a-813237b020a8",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "kFGZbaGJ7gu27BLg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "aysh4503@gmail.com",
+        "subject": "hello from n8n",
+        "emailType": "text",
+        "message": "hi !whats going on",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        -496,
+        -848
+      ],
+      "id": "77411c54-e743-4e3e-9639-1ba047025a38",
+      "name": "Send a message in Gmail",
+      "webhookId": "b61f6d7a-4ac8-423a-a88b-8556bfd46fd4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "k0UOE7Ypm8Br63oo",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Get many messages in GmailFMfcgzQgMVftzMfNWQmdPMBLjcFnpfTg",
+        "operation": "getAll",
+        "returnAll": true,
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        -288,
+        -864
+      ],
+      "id": "1d52610e-517f-42df-866a-28a4d3481395",
+      "name": "Get many messages in Gmail",
+      "webhookId": "9dc7cfbf-1a51-41bf-829a-1689b01b6211",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "k0UOE7Ypm8Br63oo",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "f407a819-d39b-41fc-89ff-5f982e7fa344",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "43fe3b721e3b45c84a8a0ead5c0e0d1cd07509446e9cf0223381c800ab5075dd"
+  },
+  "nodeGroups": [],
+  "id": "kGwpYCCmK91f3hQh",
+  "tags": []
+}
